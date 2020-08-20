@@ -1,0 +1,27 @@
+{
+  "chats": [
+    {
+      "id": "work",
+      "title": "Работа",
+      "logo": "https://image.flaticon.com/icons/svg/912/912316.svg",
+      "messages":[
+        {
+          "sender": "Boss",
+          "text": "Приветствую, коллеги, как дела с отчетами?",
+          "time": "20:00"
+        },
+        {
+          "sender": "Секретарь",
+          "text": "Добрый день, отчеты готовы!",
+          "time": "20:01"
+        }
+      ]
+    },
+    {
+      "id": "communication",
+      "title": "Общение",
+      "logo":"https://image.flaticon.com/icons/svg/809/809522.svg",
+      "messages":[]
+    }
+  ]
+}
