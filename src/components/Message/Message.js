@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classes from "./message.module.scss";
 
-export default function Message({ sender, text, time }) {
+const Message = ({sender, text, time}) => {
   const cls = [classes.Message];
 
-  if (sender) {
+  if (sender !== "You") {
     cls.push(classes.MessageIn);
   } else {
     cls.push(classes.MessageOut);
@@ -20,3 +21,17 @@ export default function Message({ sender, text, time }) {
     </li>
   )
 }
+
+Message.propTypes = {
+  sender: PropTypes.string,
+  text: PropTypes.string,
+  time: PropTypes.string,
+}
+
+Message.defaultProps = {
+  sender: "",
+  text: "",
+  time: "",
+}
+
+export default Message;

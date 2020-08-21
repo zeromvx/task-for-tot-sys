@@ -1,17 +1,21 @@
 import React from "react";
 import classes from "./messages-list.module.scss";
 import Message from "../Message/Message";
+import PropTypes from "prop-types";
+import {useParams} from "react-router";
 
-export default function MessagesList({ chatData }) {
-  const currentChatData = chatData.filter(item => item.id === "work")[0] || {};
-  const messages = currentChatData.messages || [];
-  console.log(messages)
+const MessagesList = ({chatData}) => {
+  const { chatID } = useParams();
+
+  const currentChatData = chatData.filter(item => item.id === chatID)[0];
+  const { messages } = currentChatData || [];
+
   return (
     <ul className={classes.MessagesList}>
       {
-        messages.map(({sender, text, time }) => (
+        messages && messages.map(({sender, text, time}, index) => (
           <Message
-            key={sender + time}
+            key={sender + time + index}
             sender={sender}
             text={text}
             time={time}
@@ -21,3 +25,13 @@ export default function MessagesList({ chatData }) {
     </ul>
   )
 }
+
+MessagesList.propTypes = {
+  chatData: PropTypes.array,
+}
+
+MessagesList.defaultProps = {
+  chatData: [],
+}
+
+export default MessagesList;
