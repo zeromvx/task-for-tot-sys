@@ -4,21 +4,24 @@ import Message from "../Message/Message";
 import PropTypes from "prop-types";
 import {useParams} from "react-router";
 
-const MessagesList = ({chatData}) => {
-  const { chatID } = useParams();
+const MessagesList = ({chatData, setChatData}) => {
+  const {chatID} = useParams();
 
   const currentChatData = chatData.filter(item => item.id === chatID)[0];
-  const { messages } = currentChatData || [];
+  let {messages} = currentChatData || [];
 
   return (
     <ul className={classes.MessagesList}>
       {
-        messages && messages.map(({sender, text, time}, index) => (
+        messages && messages.map(({sender, id, text, time}, index) => (
           <Message
             key={sender + time + index}
+            messageID={id}
             sender={sender}
             text={text}
             time={time}
+            chatData={chatData}
+            setChatData={setChatData}
           />
         ))
       }

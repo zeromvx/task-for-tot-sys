@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 const ChatWindow = ({ chatData, setChatData }) => {
   return (
     <main className={classes.ChatWindow}>
-      <MessagesList chatData={chatData}/>
+      <MessagesList chatData={chatData} setChatData={setChatData}/>
       <SendMessageForm chatData={chatData} setChatData={setChatData}/>
     </main>
   )

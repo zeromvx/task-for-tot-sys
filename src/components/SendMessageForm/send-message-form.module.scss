@@ -1,5 +1,5 @@
 .SendMessageForm {
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   border-top: 1px solid rgba(#000, .1);
   display: flex;
 
@@ -18,21 +18,4 @@
     border-bottom-color: #74b9ff;
   }
 
-  .SendMessageButton {
-    border: 1px solid #0984e3;
-    border-radius: 5px;
-    outline: none;
-    background: #0984e3;
-    color: #fff;
-    text-transform: uppercase;
-    transition: all .3s ease;
-    cursor: pointer;
-
-    &:active {
-      background: rgba(#0984e3, .8);
-    }
-    &:focus {
-      box-shadow: 0 0 10px 0 rgba(#0984e3, .75);
-    }
-  }
 }

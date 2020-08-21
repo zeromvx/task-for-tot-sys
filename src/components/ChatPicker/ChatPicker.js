@@ -8,7 +8,7 @@ const ChatPicker = ({id, title, logo}) => {
     <li className={classes.ChatPicker}>
       <Link to={`/${id}`}>
         <img src={logo} alt="chatLogo" className={classes.chatLogo}/>
-        <div>
+        <div className={classes.chatTitle}>
           {title}
         </div>
       </Link>
