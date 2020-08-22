@@ -1,5 +1,7 @@
 ## Test Task
 
+Приложение доступно по [ссылке](https://react-frontend-chat.herokuapp.com/)
+<br />
 Для запуска проекта используйте в корне директории:
 ### `yarn start`
 или <br />
