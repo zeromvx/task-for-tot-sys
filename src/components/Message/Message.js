@@ -1,13 +1,12 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
 import classes from "./message.module.scss";
-import {useParams} from "react-router";
-import {SENDED_MESSAGES} from "../../constants";
+import {useMessages} from "../../hooks/useMessages";
 
-const Message = ({messageID, sender, text, time, chatData, setChatData}) => {
+const Message = ({messageID, sender, text, time}) => {
   const cls = [classes.Message];
-  const {chatID} = useParams();
   const [isMessageEditing, setIsMessageEditing] = useState(false);
+  const {editMessage, deleteMessage} = useMessages();
 
   if (sender !== "You") {
     cls.push(classes.MessageIn);
@@ -15,40 +14,11 @@ const Message = ({messageID, sender, text, time, chatData, setChatData}) => {
     cls.push(classes.MessageOut);
   }
 
-  const newChatData = [...chatData];
-  const currentChatData = newChatData.filter(({id}) => id === chatID)[0];
-
-  let sendedMessages = JSON.parse(localStorage.getItem(SENDED_MESSAGES));
-
-  const deleteMessage = () => {
-    sendedMessages = sendedMessages.filter(({id}) => id !== messageID);
-    currentChatData.messages = currentChatData.messages.filter(({id}) => id !== messageID);
-
-    localStorage.setItem(SENDED_MESSAGES, JSON.stringify(sendedMessages));
-    setChatData(newChatData);
-  }
-
-  const editMessage = (e) => {
-
-    if (e.key === "Enter") {
-      currentChatData.messages = currentChatData.messages.map(message => {
-        if (message.id === messageID) {
-          message.text = e.target.value;
-        }
-        return message;
-      });
-      sendedMessages = sendedMessages.map(message => {
-        if (message.id === messageID) {
-          message.text = e.target.value;
-        }
-        return message;
-      });
-
-      localStorage.setItem(SENDED_MESSAGES, JSON.stringify(sendedMessages));
+  const handleEditMessage = ({key, target: {value}}) => {
+    if (key === "Enter") {
+      editMessage(value, messageID);
       setIsMessageEditing(false);
-      setChatData(newChatData);
     }
-
   }
 
   return (
@@ -58,11 +28,11 @@ const Message = ({messageID, sender, text, time, chatData, setChatData}) => {
         {
           isMessageEditing
             ? <input
-                type="text"
-                className={classes.editField}
-                placeholder="Введите новое сообщение."
-                onKeyPress={editMessage}
-              />
+              type="text"
+              className={classes.editField}
+              placeholder="Введите новое сообщение."
+              onKeyPress={handleEditMessage}
+            />
             : <p>{text}</p>
         }
         <time>{time}</time>
@@ -70,7 +40,7 @@ const Message = ({messageID, sender, text, time, chatData, setChatData}) => {
           sender === "You"
             ? <>
               <button className={classes.delete}
-                      onClick={deleteMessage}>&#10007;</button>
+                      onClick={() => deleteMessage(messageID)}>&#10007;</button>
               <button
                 className={classes.edit}
                 onClick={() => setIsMessageEditing(true)}>
@@ -85,12 +55,14 @@ const Message = ({messageID, sender, text, time, chatData, setChatData}) => {
 }
 
 Message.propTypes = {
+  messageID: PropTypes.number,
   sender: PropTypes.string,
   text: PropTypes.string,
   time: PropTypes.string,
 }
 
 Message.defaultProps = {
+  messageID: 0,
   sender: "",
   text: "",
   time: "",

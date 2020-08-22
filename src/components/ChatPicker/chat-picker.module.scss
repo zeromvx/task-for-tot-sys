@@ -1,12 +1,12 @@
 .ChatPicker {
   padding: 1.1rem 1.25rem;
   border-bottom: .5px solid rgba(#000, .1);
-  display: flex;
   font-size: 1rem;
   cursor: pointer;
 
   a {
     display: flex;
+    align-items: center;
     width: 100%;
     color: #000000;
     text-decoration: none;

@@ -4,11 +4,11 @@ import SendMessageForm from "../SendMessageForm/SendMessageForm";
 import MessagesList from "../MessagesList/MessagesList";
 import PropTypes from "prop-types";
 
-const ChatWindow = ({ chatData, setChatData }) => {
+const ChatWindow = () => {
   return (
     <main className={classes.ChatWindow}>
-      <MessagesList chatData={chatData} setChatData={setChatData}/>
-      <SendMessageForm chatData={chatData} setChatData={setChatData}/>
+      <MessagesList />
+      <SendMessageForm />
     </main>
   )
 }

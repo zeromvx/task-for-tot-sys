@@ -1,14 +1,10 @@
 import React from "react";
 import classes from "./messages-list.module.scss";
 import Message from "../Message/Message";
-import PropTypes from "prop-types";
-import {useParams} from "react-router";
+import {useMessages} from "../../hooks/useMessages";
 
-const MessagesList = ({chatData, setChatData}) => {
-  const {chatID} = useParams();
-
-  const currentChatData = chatData.filter(item => item.id === chatID)[0];
-  let {messages} = currentChatData || [];
+const MessagesList = () => {
+  const {messages} = useMessages();
 
   return (
     <ul className={classes.MessagesList}>
@@ -20,21 +16,11 @@ const MessagesList = ({chatData, setChatData}) => {
             sender={sender}
             text={text}
             time={time}
-            chatData={chatData}
-            setChatData={setChatData}
           />
         ))
       }
     </ul>
   )
-}
-
-MessagesList.propTypes = {
-  chatData: PropTypes.array,
-}
-
-MessagesList.defaultProps = {
-  chatData: [],
 }
 
 export default MessagesList;
