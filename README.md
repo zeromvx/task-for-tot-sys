@@ -1,13 +1,20 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Test Task
 
-## Tesk Task
-
-In the project directory, you can run:
-
+Для запуска проекта используйте в корне директории:
 ### `yarn start`
+или <br />
+### `npm start`
+Откройте [http://localhost:3000](http://localhost:3000
+) для просмотра в браузере.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Возможности приложения:
+- Авторизация. Для входа введите: <br/>
+login: admin <br/>
+pass: 1234 <br/>
+- Переключения между чатами.
+- Отправка, удаление, редактирование сообщений.
+- Сохранение данных в localStorage.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Архитектурные решения:
+Для реализации функционала работы с сообщениями был создан хук useMessage.
+Он позволяет выполнять CRUD операции с сообщениями.

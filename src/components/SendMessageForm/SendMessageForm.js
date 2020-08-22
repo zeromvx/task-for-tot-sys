@@ -23,13 +23,10 @@ const SendMessageForm = () => {
 
   return (
     <form className={classes.SendMessageForm} onSubmit={handleSubmit}>
-      <button className={classes.sendButton} type="file">
-        <img src="/images/file-upload.svg" alt="upload"/>
-        <input type="file" className={classes.fileUpload}/>
-      </button>
       <input onChange={handleInputChange} value={message} type="text"
              className={classes.input}
              placeholder="Введите сообщение..."/>
+
       <button className={classes.sendButton} type="submit">
         <img src="/images/send-message.svg" alt="send"/>
       </button>

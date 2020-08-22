@@ -9,7 +9,7 @@ export const useMessages = () => {
   const newChatData = [...chatData];
   const {chatID} = useParams();
   const currentChatData = newChatData.filter(({id}) => id === chatID)[0];
-  const { messages } = currentChatData;
+  const { messages } = currentChatData || [];
 
   let sendedMessages = JSON.parse(localStorage.getItem(SENDED_MESSAGES));
 
